@@ -27,12 +27,20 @@
             <Property name="text" type="java.lang.String" value="Consultas"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jListados">
+            <MenuItem class="javax.swing.JMenuItem" name="jListadoPorFecha">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Listados"/>
+                <Property name="text" type="java.lang.String" value="Listado por Fecha"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jListadosActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jListadoPorFechaActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jListadoEntreFechas">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Listado Entre Fechas"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jListadoEntreFechasActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

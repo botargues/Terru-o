@@ -18,7 +18,8 @@ public class Menu extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jtfmovimientoDiario = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
-        jListados = new javax.swing.JMenuItem();
+        jListadoPorFecha = new javax.swing.JMenuItem();
+        jListadoEntreFechas = new javax.swing.JMenuItem();
         jSalir = new javax.swing.JMenu();
 
         escritorio.setBackground(new java.awt.Color(153, 255, 51));
@@ -53,13 +54,21 @@ public class Menu extends javax.swing.JFrame {
 
         jMenu2.setText("Consultas");
 
-        jListados.setText("Listados");
-        jListados.addActionListener(new java.awt.event.ActionListener() {
+        jListadoPorFecha.setText("Listado por Fecha");
+        jListadoPorFecha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jListadosActionPerformed(evt);
+                jListadoPorFechaActionPerformed(evt);
             }
         });
-        jMenu2.add(jListados);
+        jMenu2.add(jListadoPorFecha);
+
+        jListadoEntreFechas.setText("Listado Entre Fechas");
+        jListadoEntreFechas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jListadoEntreFechasActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jListadoEntreFechas);
 
         jMenuBar1.add(jMenu2);
 
@@ -105,7 +114,7 @@ public class Menu extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jSalirActionPerformed
 
-    private void jListadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jListadosActionPerformed
+    private void jListadoPorFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jListadoPorFechaActionPerformed
         escritorio.removeAll();
         escritorio.repaint();
         listadoPorFecha lpf=new listadoPorFecha();
@@ -113,7 +122,16 @@ public class Menu extends javax.swing.JFrame {
         escritorio.add(lpf);
         escritorio.moveToFront(lpf);
         
-    }//GEN-LAST:event_jListadosActionPerformed
+    }//GEN-LAST:event_jListadoPorFechaActionPerformed
+
+    private void jListadoEntreFechasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jListadoEntreFechasActionPerformed
+        escritorio.removeAll();
+        escritorio.repaint();
+        listadoEntreFechas lef=new listadoEntreFechas();
+        lef.setVisible(true);
+        escritorio.add(lef);
+        escritorio.moveToFront(lef);
+    }//GEN-LAST:event_jListadoEntreFechasActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -125,7 +143,8 @@ public class Menu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane escritorio;
-    private javax.swing.JMenuItem jListados;
+    private javax.swing.JMenuItem jListadoEntreFechas;
+    private javax.swing.JMenuItem jListadoPorFecha;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;

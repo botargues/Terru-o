@@ -9,11 +9,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Iterator;
 import javax.swing.JOptionPane;
 
 public class ventaData {
     private Connection con =null;
-
+    private ventasDiarias vd=null;
+    
     public ventaData() {
         con=Conexion.getConexion();
         
@@ -46,7 +48,7 @@ public class ventaData {
 
     public ventasDiarias buscarVentaPorFecha(LocalDate fecha){
         String sql="SELECT fecha,cafeIng,injIng,paniIng,prodIng,cafeEg,injEg,paniEg,casaEg FROM ventadiaria WHERE fecha=?";
-        ventasDiarias vd=null;
+        //ventasDiarias vd=null;
         try {    
             PreparedStatement ps=con.prepareStatement(sql);  
             ps.setDate(1, Date.valueOf(fecha));
@@ -73,17 +75,19 @@ public class ventaData {
     }
     
     
-/*    public ArrayList<ventasDiarias> buscarVentaPorFech(){
-        ventasDiarias vd=null;
-        ArrayList<ventasDiarias> ventasDiarias = new ArrayList<>();
-        String sql="SELECT fecha,cafeIng,injIng,paniIng,prodIng,cafeEg,injEg,paniEg,casaEg FROM ventadiaria WHERE fecha=?";
-        PreparedStatement ss=null;
-        try {
-            ss=con.prepareStatement(sql);
-            ss.setDate(1, Date.valueOf(fecha));
-            ResultSet rs=ss.executeQuery();
-            if (rs.next()){
-                vd=new ventasDiarias();
+    public ArrayList<ventasDiarias> buscarVentaEntreFechas(LocalDate fecha1,LocalDate fecha2){
+        ArrayList<ventasDiarias> ventaDiaria = new ArrayList<>();
+       
+        String sql="SELECT * FROM ventadiaria WHERE fecha >= ? AND fecha <= ? ";
+        
+        PreparedStatement ps=null;
+        try {    
+            ps=con.prepareStatement(sql);  
+            ps.setDate(1, Date.valueOf(fecha1));
+            ps.setDate(2, Date.valueOf(fecha2));
+            ResultSet rs=ps.executeQuery();
+            if(rs.next()){      
+                vd=new ventasDiarias();          
                 vd.setFecha(rs.getDate("fecha").toLocalDate());
                 vd.setIngCafe(rs.getDouble("cafeIng"));
                 vd.setIngInje(rs.getDouble("injIng"));
@@ -93,15 +97,34 @@ public class ventaData {
                 vd.setEgInje(rs.getDouble("injEg"));
                 vd.setEgPani(rs.getDouble("paniEg"));
                 vd.setEgcasa(rs.getDouble("casaEg"));
-                ventasDiarias.add(vd);
+                ventaDiaria.add(vd);
             }else{
-                JOptionPane.showMessageDialog(null,"No se encontro la fecha solicitada");
-                ss.close();
+                JOptionPane.showMessageDialog(null, "Ninguna venta en esa fecha");   
             }
-        } catch (SQLException xx){
-            JOptionPane.showMessageDialog(null,"Error al acceder a buscar la fecha  "+xx.getMessage());
+            ps.close();
+        }catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la base de datos");
         }
-        return ventasDiarias;
+        System.out.println(ventaDiaria.size());
+        return ventaDiaria;
     }
-  */  
+
+    public ArrayList<ventasDiarias> sumarLista(ArrayList lista){
+        ArrayList<ventasDiarias> sumaLista = new ArrayList<>();
+        Iterator<ventasDiarias> it = lista.iterator();
+        
+        while(it.hasNext()){
+            ventasDiarias item=it.next();  
+            System.out.println("tipo: " + item.getIngCafe());
+        }
+        /*for(Object str : lista){
+            System.out.println("sergio");
+            System.out.println(str.toString());
+        }
+        for(int i=0; i < lista.size(); i++){
+            System.out.println(lista.get(i));
+        }*/
+        return sumaLista;
+    }
+    
 }

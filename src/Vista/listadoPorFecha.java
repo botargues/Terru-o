@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package Vista;
 
 import AccesoDatos.ventaData;
@@ -230,8 +224,6 @@ public class listadoPorFecha extends javax.swing.JInternalFrame {
                 sumaE+=venta.getEgcasa();
                 jTotalIng.setText("TOTAL "+sumaI);
                 jTotalEgresos.setText("TOTAL "+sumaE);
-            }else{
-                JOptionPane.showMessageDialog(this, "Fecha sin actividad registrada");
             }
         }catch(NumberFormatException e){
            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla"+ e);
